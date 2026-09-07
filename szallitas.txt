@@ -1,0 +1,23 @@
+Súlyalapú alapdíj: <5kg = 1500 Ft, 5-20kg = 2500 Ft, >20kg = 5000 Ft.
+Belföld (HU): >20 000 Ft rendelésnél ingyenes szállítási díj
+Külföld (nem HU): Dupla díj (x2).
+Expressz (true): +50% felár (x1.5).
+Érvényesítés: Negatív rendelési érték és tömeg nem megengedett. Kis/nagybetűs országkód elfogadott.
+
+1. orderValue: 10000, weight: 3, country: "HU", express: false -> Elvárt: 1500 Ft (Tényleges: 1500 Ft)
+2. orderValue: 10000, weight: 5, country: "HU", express: false -> Elvárt: 2500 Ft (Tényleges: 5000 Ft)
+3. orderValue: 10000, weight: 10, country: "HU", express: false -> Elvárt: 2500 Ft (Tényleges: 2500 Ft)
+4. orderValue: 10000, weight: 20, country: "HU", express: false -> Elvárt: 2500 Ft (Tényleges: 5000 Ft)
+5. orderValue: 10000, weight: 25, country: "HU", express: false -> Elvárt: 5000 Ft (Tényleges: 5000 Ft)
+6. orderValue: 25000, weight: 10, country: "HU", express: false -> Elvárt: 0 Ft (Tényleges: 0 Ft)
+7. orderValue: 10000, weight: 3, country: "hu", express: false -> Elvárt: 1500 Ft (Tényleges: 3000 Ft)
+8. orderValue: 10000, weight: 3, country: "DE", express: false -> Elvárt: 3000 Ft (Tényleges: 3000 Ft)
+9. orderValue: 10000, weight: 3, country: "HU", express: true  -> Elvárt: 2250 Ft (Tényleges: 1550 Ft)
+10. orderValue: 10000, weight: 3, country: "DE", express: true  -> Elvárt: 4500 Ft (Tényleges: 3050 Ft)
+11. orderValue: -500,  weight: 3, country: "HU", express: false -> Elvárt: Hiba (Tényleges: 1500 Ft)
+12. orderValue: 10000, weight: -2, country: "HU", express: false -> Elvárt: Hiba (Tényleges: 1500 Ft)
+
+1. Negatív érték ellenőrzés hiánya: calculateShippingCost(10000, -5, "HU", false) -> 1500-at ad Hiba helyett.
+2. Rossz határérték 5kg és 20kg-nál: calculateShippingCost(10000, 5, "HU", false) -> 5000-et ad 2500 helyett (a condition: weight > 5 && weight < 20).
+3. Kisbetűs "hu" kezelése: calculateShippingCost(10000, 3, "hu", false) -> 3000-et ad 1500 helyett.
+4. Expressz felár számítása: calculateShippingCost(10000, 3, "HU", true) -> 1550-et ad 2250 helyett (a kód: +50 az *1.5 helyett).
