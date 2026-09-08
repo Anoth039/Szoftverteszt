@@ -1,0 +1,49 @@
+1. DiscountCalculator
+
+A VIP adásánál 500 százalékot ad hozzá a kód 5 százalékpont helyett.
+
+A végén a százalékértéket vonja le a forintösszegből a tényleges kedvezmény helyett.
+
+A határértékeknél a tízezer forint kimaradt az ötvenezer pedig duplán szerepel.
+
+A negatív értékek ellenőrzése teljesen hiányzik a kódból.
+
+2. ParkingFeeCalculator
+
+A 15 és 59 perc közötti időtartamra ingyenesen lehet parkolni mert lefelé kerekíti az órákat és nem számolja a megkezdett órákat.
+
+A pontosan 15 perces parkolásért már díjat számol fel a kód pedig az még ingyenes a specifikáció szerint.
+
+A VIP kedvezményként 20 százalék helyett fixen 20 forintot von le a teljes díjból.
+
+A napi 5000 forintos plafont még a hétvégi és VIP kedvezmények előtt kellene alkalmazni nem pedig a legvégén.
+
+Hiányzik a negatív percek kiszűrése és kezelése a kódból.
+
+3. CinemaTicketCalculator
+
+A 6 éves gyermek nem ingyenes mert a feltétel szerint fizetnie kell míg a 65 évesek kimaradnak az időskori kedvezményből.
+
+A diák kedvezményt rászámolja az egyéb kedvezményekre ahelyett hogy csak a legnagyobbat alkalmazná.
+
+A 3D felárnál 800 forint hozzáadása helyett 80 százalékkal növeli a jegy árát és erre is érvényesíti a kedvezményeket.
+
+A negatív és a 120 év feletti életkorok ellenőrzése teljesen hiányzik a kódból.
+
+4. ExamGradeCalculator
+
+A sikertelen vizsgához mindkét minimum bukását elvárja a kód az és kapcsolat miatt így ha csak az egyikből van meg a minimum az még átmegy.
+
+A határértékeknél 60 70 és 85 pontnál a kód a rosszabb jegyet adja ahelyett hogy a magasabbat kapná a hallgató.
+
+Érvénytelen pontszámok esetén mint a negatív értékek vagy a maximális pontszám feletti értékek nem jelez hibát a kód.
+
+Hiányzik a pontszámok külön ellenőrzése is így érvénytelen egyéni pontokkal is ki tudja számolni az eredményt.
+
+5. PackageClassifier
+
+A SMALL kategóriánál a szigorúan kisebb jel miatt a pontosan 2 kilós és 30 centis csomagok átcsúsznak a nagyobb kategóriába.
+
+A MEDIUM kategóriánál az és kapcsolat helyett vagy kapcsolat van a méreteknél így elég ha csak az egyik méret 60 centi alatti.
+
+Az érvénytelen nullás vagy negatív méretek és tömegek ellenőrzése teljesen hiányzik a kódból az INVALID jelzés helyett ezeket is besorolja.
